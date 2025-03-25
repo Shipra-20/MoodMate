@@ -23,8 +23,6 @@ MoodMate is a personalized thought journal and emotion analyzer designed to help
 - **📝 Thought Journaling** – Write down your thoughts and feelings in a private space.  
 - **📊 Mood Analysis** – Automatically analyze your journal entries to detect your emotional state.  
 - **💡 Personalized Suggestions** – Get helpful tips and activities to improve your mood.  
-- **📅 Emotion Tracking** – Keep a history of your moods and reflect on past entries.  
-- **🔒 Privacy-Focused** – No database required; all data stays in your browser.  
 - **🎨 Simple & Minimalist Design** – Easy-to-use interface for a seamless experience.
 
 ## 👥 Team Members
