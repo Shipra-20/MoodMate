@@ -1,0 +1,202 @@
+
+:root {
+    --east-bay: #495078;
+    --deep-blush: #eb61a5;
+    --seashell: #f1f0f1;
+    --cadet-blue: #a4aac4;
+    --pigeon-post: #bec5dd;
+    --shadow: rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.3s ease-in-out;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--east-bay);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    position: relative;
+}
+
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-45deg, #FF69B4, #FFC0CB, #FFB6C1, #FF1493);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    z-index: -1; 
+}
+
+
+.particles {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://www.transparenttextures.com/patterns/white-dust.png");
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+.navbar {
+    background-color: var(--east-bay);
+    color: var(--seashell);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 8px var(--shadow);
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--seashell);
+    font-size: 1rem;
+    transition: color var(--transition-speed);
+}
+
+.navbar ul li a:hover {
+    color: var(--deep-blush);
+}
+
+
+.logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    transition: transform var(--transition-speed);
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem;
+    text-align: center;
+    flex-grow: 1;
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+    z-index: 5;
+}
+
+.main-content h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.6;
+    max-width: 700px;
+    text-shadow: 1px 1px 3px var(--shadow);
+    margin-bottom: 2rem;
+}
+
+
+.journal-button {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--east-bay), var(--cadet-blue));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.journal-button:hover {
+    background: linear-gradient(135deg, var(--cadet-blue), var(--east-bay));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow);
+}
+
+
+.footer {
+    background-color: var(--east-bay);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: auto;
+    box-shadow: 0 -3px 8px var(--shadow);
+    position: relative;
+    z-index: 10;
+}
+
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        font-size: 1.3rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .main-content {
+        padding: 3rem 1.5rem;
+    }
+
+    .main-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .journal-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        font-size: 1.1rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .main-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .journal-button {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+    }
+}

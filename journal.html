@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodMate - Thought Journal</title>
+    <link rel="stylesheet" href="journal.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MoodMate - Thought Journal & Emotion Analyzer</h1>
+        <textarea id="journalEntry" placeholder="Write about your day..."></textarea>
+        <button id="analyzeMood">Analyze Mood</button>
+        <button id="clearJournal">Clear</button>
+        <button id="homeButton">Home</button>
+
+        <!-- Mood analysis result section -->
+        <div id="moodMessage" class="message-box"></div>
+
+        <!-- Uplifting content (suggestions) -->
+        <div id="upliftingContent" class="suggestion-box"></div>
+    </div>
+
+    <script src="journal.js"></script>
+</body>
+</html>
