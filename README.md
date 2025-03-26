@@ -32,6 +32,10 @@ MoodMate is a personalized thought journal and emotion analyzer designed to help
 - **Shagun Attri**
 - **Sherani Goyal**
 
+## View Our Website At 
+
+https://shipra-20.github.io/MoodMate/
+
 ## 🖼️ Screenshots
 
 - **Create Account page**
