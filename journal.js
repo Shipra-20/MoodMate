@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const moodMessage = document.getElementById("moodMessage");
     const upliftingContent = document.getElementById("upliftingContent");
 
-
     analyzeMoodBtn.addEventListener("click", () => {
         const text = journalEntry.value.trim();
         if (text === "") {
@@ -21,27 +20,25 @@ document.addEventListener("DOMContentLoaded", () => {
         generateMoodInsight(moodAnalysis);
     });
 
-    
     clearBtn.addEventListener("click", () => {
-        journalEntry.value = ""; 
-        moodResult.innerHTML = ""; 
-        moodMessage.innerHTML = ""; 
-        upliftingContent.innerHTML = ""; 
+        journalEntry.value = "";
+        moodResult.innerHTML = "";
+        moodMessage.innerHTML = "";
+        upliftingContent.innerHTML = "";
     });
 
-    
     homeBtn.addEventListener("click", () => {
-        window.location.href = "index.html"; 
+        window.location.href = "index.html";
     });
 
     function analyzeMood(text) {
         const words = text.toLowerCase().split(/\s+/);
-        
+
         const moodWords = {
-            happy: ["happy", "joy", "excited", "love", "great", "amazing", "fun"],
-            sad: ["sad", "depressed", "unhappy", "cry", "bad", "lonely"],
-            angry: ["angry", "mad", "frustrated", "upset", "hate"],
-            calm: ["calm", "peaceful", "relaxed", "serene"]
+            happy: ["happy", "joy", "excited", "love", "great", "amazing", "fun", "cheerful", "delighted", "ecstatic", "grateful", "good", "wonderful", "pleased"],
+            sad: ["sad", "depressed", "unhappy", "cry", "bad", "lonely", "heartbroken", "miserable", "gloomy", "down"],
+            angry: ["angry", "mad", "frustrated", "upset", "hate", "irritated", "furious", "annoyed", "resentful", "bitter"],
+            calm: ["calm", "peaceful", "relaxed", "serene", "content", "tranquil", "mindful", "soothing", "quiet", "still"]
         };
 
         let counts = { happy: 0, sad: 0, angry: 0, calm: 0 };
@@ -61,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const { happy, sad, angry, calm } = moodAnalysis;
         let insight = "";
         let suggestion = "";
-    
+
         if (happy > sad && happy > angry && happy > calm) {
             insight = "You seem to be in a joyful mood today! Keep spreading positivity! 😊";
             suggestion = "✨ Try sharing your happiness with a friend, listening to your favorite song, or dancing to upbeat music! 🎶";
@@ -84,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             insight = "Your emotions seem mixed. Keep writing and expressing yourself, it's a great way to understand your feelings. 📝";
             suggestion = "🎨 Take a break, listen to your favorite song, or doodle something fun to uplift your mood!";
         }
-    
+
         if (moodMessage && upliftingContent) {
             moodMessage.innerHTML = `<strong>${insight}</strong>`;
             upliftingContent.innerHTML = `<p>${suggestion}</p>`;

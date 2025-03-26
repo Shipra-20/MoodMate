@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental Wellness</title>
     <link rel="stylesheet" href="style1.css">
+    <link rel="preload" href="https://github.com/Shipra-20/MoodMate/blob/main/images/logo.jpg?raw=true" as="image">
 </head>
 <body>
 
-   
     <div class="background"></div>
     <div class="particles"></div>
 
@@ -21,7 +21,6 @@
         </ul>
     </nav>
 
-
     <main class="main-content">
         <div class="left-section">
             <h2>Reflect, Express, Understand &ndash; <br> Your Thoughts, Your Emotions, <br> Your Journey.</h2>
@@ -31,18 +30,22 @@
         </div>
         <div class="right-section">
             <div class="image-grid">
-                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/1.jpg?raw=true" alt="Image 1">
-                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/2.jpg?raw=true" alt="Image 2">
-                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/3.jpg?raw=true" alt="Image 3">
-                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/4.jpg?raw=true" alt="Image 4">
+                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/1.jpg?raw=true" alt="Image 1" loading="lazy">
+                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/2.jpg?raw=true" alt="Image 2" loading="lazy">
+                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/3.jpg?raw=true" alt="Image 3" loading="lazy">
+                <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/4.jpg?raw=true" alt="Image 4" loading="lazy">
             </div>
         </div>
     </main>
+
     <footer class="footer">
         <p>&copy; 2025 MoodMate | Designed with ❤ for mental well-being</p>
-       
     </footer>
-   
-    <script src="script.js"></script>
+
+    <script>
+        function openJournal() {
+            window.location.href = 'journal.html';
+        }
+    </script>
 </body>
 </html>
