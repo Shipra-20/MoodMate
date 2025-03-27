@@ -1,0 +1,20 @@
+{
+  "name": "moodmate",
+  "version": "1.0.0",
+  "description": "MoodMate is a personalized thought journal and emotion analyzer designed to help you track your feelings, reflect on your thoughts, and gain insights into your emotional well-being. Whether you're experiencing highs, lows, or something in between, MoodMate provides a safe space to express yourself and recognize patterns in your emotionns.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shipra-20/MoodMate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shipra-20/MoodMate/issues"
+  },
+  "homepage": "https://github.com/Shipra-20/MoodMate#readme"
+}
