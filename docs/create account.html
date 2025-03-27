@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(235, 97, 165, 0.9));
+      color: white;
+    }
+
+    .particle-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/dark-fish-skin.png');
+      background-size: 5px 5px;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .sign-in-container {
+      background: rgba(34, 34, 34, 0.9);
+      padding: 40px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .logo-container img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .input-field input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background: #444;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #eb61a5;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+    <div class="particle-bg"></div>
+    <div class="sign-in-container">
+        <div class="logo-container">
+          <img src="https://github.com/Shipra-20/MoodMate/blob/main/images/logo.jpg?raw=true" alt="Logo">
+        </div>
+        <h2>Welcome New User</h2>
+        <form id="signup-form">
+          <div class="input-field">
+            <input type="text" id="username" name="username" required placeholder="Username">
+          </div>
+          <div class="input-field">
+            <input type="text" id="mobile_number" name="mobile_number" required placeholder="Mobile Number">
+          </div>
+          <div class="input-field">
+            <input type="email" id="email" name="email" required placeholder="Email">
+          </div>
+          <div class="input-field">
+            <input type="password" id="password" name="password" required placeholder="Password">
+          </div>
+          <button type="submit">Create Account</button>
+        </form>
+        <p>Already have an account? <a href="sign_in_page.html">Sign In</a></p>
+    </div>
+
+<script>
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const mobile_number = document.getElementById('mobile_number').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  try {
+    const response = await fetch('http://localhost:5000/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, mobile_number, email, password })
+    });
+
+    const data = await response.json();
+    alert(data.message || data.error);
+    if (response.ok) {
+      window.location.href = 'sign in page.html';
+    }
+  } catch (error) {
+    alert('Error connecting to server');
+  }
+});
+</script>
+</body>
+</html>
