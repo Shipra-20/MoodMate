@@ -26,6 +26,7 @@
             <h2>Reflect, Express, Understand &ndash; <br> Your Thoughts, Your Emotions, <br> Your Journey.</h2>
             <div class="journal-button-container">
                 <button class="journal-button" onclick="openJournal()">Write Your Journal &rarr;</button>
+                <button class="journal-button" onclick="openquiz()">Take a Quiz &rarr;</button>
             </div>
         </div>
         <div class="right-section">
@@ -45,6 +46,9 @@
     <script>
         function openJournal() {
             window.location.href = 'journal.html';
+        }
+        function openquiz() {
+        window.open('quiz.html', '_blank');
         }
     </script>
 </body>

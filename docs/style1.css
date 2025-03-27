@@ -111,10 +111,11 @@ body {
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    gap: 25px;
 }
 
 .journal-button {
-    padding: 1rem 2rem;
+    padding: 1em 2rem;
     background: linear-gradient(135deg, var(--east-bay), var(--cadet-blue));
     color: white;
     border: none;
@@ -184,7 +185,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     .main-content { flex-direction: column; padding: 2rem; }
     .journal-button { font-size: 1rem; }
     .image-grid img { max-width: 80%; margin: 0 auto; }

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="quiz"></div>
+        <div id="result"></div>
+        <button id="retry" style="display: none;">Retry</button>
+    </div>
+
+    <script>
+        const quizData = [
+            { 
+                question: 'How often have you felt anxious today?', 
+                options: ['Rarely', 'Sometimes', 'Often'], 
+                image: 'https://raw.githubusercontent.com/Shipra-20/MoodMate/b24299498aa9b3062f80b964aa53b8c9a400dd23/images/8.jpg' 
+            },
+            { 
+                question: 'Did you feel confident in your abilities today?', 
+                options: ['Yes', 'No'], 
+                image: 'https://raw.githubusercontent.com/Shipra-20/MoodMate/b24299498aa9b3062f80b964aa53b8c9a400dd23/images/7.jpg' 
+            },
+            { 
+                question: 'Have you had trouble sleeping recently?', 
+                options: ['Yes', 'No'], 
+                image: 'https://raw.githubusercontent.com/Shipra-20/MoodMate/b24299498aa9b3062f80b964aa53b8c9a400dd23/images/6.jpg' 
+            },
+            { 
+                question: 'How would you describe your energy levels today?', 
+                options: ['Low', 'Moderate', 'High'], 
+                image: 'https://raw.githubusercontent.com/Shipra-20/MoodMate/b24299498aa9b3062f80b964aa53b8c9a400dd23/images/5.jpg' 
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz');
+        const resultContainer = document.getElementById('result');
+        const retryButton = document.getElementById('retry');
+
+        let currentQuestion = 0;
+        let moodResponses = { happy: 0, sad: 0, overwhelmed: 0 };
+
+        function displayQuestion() {
+            const questionData = quizData[currentQuestion];
+            quizContainer.innerHTML = '';
+
+            const questionWrapper = document.createElement('div');
+            questionWrapper.className = 'quiz-wrapper';
+
+            if (questionData.image) {
+                const imageElement = document.createElement('img');
+                imageElement.src = questionData.image;
+                imageElement.alt = 'Question Image';
+                imageElement.className = 'quiz-image';
+                questionWrapper.appendChild(imageElement);
+            }
+
+            const contentWrapper = document.createElement('div');
+            contentWrapper.className = 'quiz-content';
+
+            const questionElement = document.createElement('div');
+            questionElement.className = 'question';
+            questionElement.innerHTML = questionData.question;
+
+            const optionsElement = document.createElement('div');
+            optionsElement.className = 'options';
+
+            questionData.options.forEach(option => {
+                const label = document.createElement('label');
+                label.className = 'option';
+
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'quiz';
+                radio.value = option;
+
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option));
+                optionsElement.appendChild(label);
+            });
+
+            const submitButton = document.createElement('button');
+            submitButton.className = 'submit-btn';
+            submitButton.innerText = 'Submit';
+            submitButton.addEventListener('click', checkAnswer);
+
+            contentWrapper.appendChild(questionElement);
+            contentWrapper.appendChild(optionsElement);
+            contentWrapper.appendChild(submitButton);
+            questionWrapper.appendChild(contentWrapper);
+            quizContainer.appendChild(questionWrapper);
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="quiz"]:checked');
+            if (!selectedOption) return;
+
+            const answer = selectedOption.value;
+            const questionText = quizData[currentQuestion].question;
+
+            if (questionText.includes('anxious')) {
+                if (answer === 'Often') moodResponses.overwhelmed++;
+                if (answer === 'Sometimes') moodResponses.sad++;
+            }
+
+            if (questionText.includes('confident')) {
+                if (answer === 'Yes') moodResponses.happy++;
+                if (answer === 'No') moodResponses.sad++;
+            }
+
+            if (questionText.includes('sleeping')) {
+                if (answer === 'Yes') moodResponses.overwhelmed++;
+            }
+
+            if (questionText.includes('energy')) {
+                if (answer === 'Low') moodResponses.sad++;
+                if (answer === 'High') moodResponses.happy++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < quizData.length) {
+                displayQuestion();
+            } else {
+                displayResult();
+            }
+        }
+
+        function displayResult() {
+            quizContainer.style.display = 'none';
+            retryButton.style.display = 'inline-block';
+
+            let moodAnalysis = <h3>Your Mood Analysis:</h3>;
+            moodAnalysis += <p>Happy: ${moodResponses.happy}</p>;
+            moodAnalysis += <p>Sad: ${moodResponses.sad}</p>;
+            moodAnalysis += <p>Overwhelmed: ${moodResponses.overwhelmed}</p>;
+
+            let tips = <h3>Well-being Tips:</h3>;
+            let hasTips = false;
+
+            if (moodResponses.happy > moodResponses.sad && moodResponses.happy > moodResponses.overwhelmed) {
+                tips += <p>You're feeling positive! Keep up the good habits.</p>;
+                hasTips = true;
+            }
+            if (moodResponses.sad >= moodResponses.happy && moodResponses.sad >= moodResponses.overwhelmed) {
+                tips += <p>You're feeling a bit low. Try journaling, reaching out to a friend.</p>;
+                hasTips = true;
+            }
+            if (moodResponses.overwhelmed >= moodResponses.happy && moodResponses.overwhelmed >= moodResponses.sad) {
+                tips += <p>You're feeling overwhelmed. Consider deep breathing exercises.</p>;
+                hasTips = true;
+            }
+
+            if (!hasTips) {
+                tips += <p>Maintain a balanced routine and engage in activities that bring you joy.</p>;
+            }
+
+            resultContainer.innerHTML = moodAnalysis + tips;
+        }
+
+        function retryQuiz() {
+            currentQuestion = 0;
+            moodResponses = { happy: 0, sad: 0, overwhelmed: 0 };
+
+            quizContainer.style.display = 'block';
+            retryButton.style.display = 'none';
+            resultContainer.innerHTML = '';
+
+            displayQuestion();
+        }
+
+        retryButton.addEventListener('click', retryQuiz);
+        displayQuestion();
+    </script>
+</body>
+</html>
