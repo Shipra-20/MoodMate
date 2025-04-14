@@ -120,6 +120,7 @@ body {
     width: 100%;
     max-width: 200px;
     text-align: center;
+    margin-top: 20px;
 }
 
 /* Hide default button styles */
@@ -138,18 +139,45 @@ body {
 #retry, #showAnswer {
     display: none;
 }
+#retry {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #ff7eb9, #ff65a3);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    align-self: center;
+}
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+#retry:hover {
+    background: linear-gradient(135deg, #ff65a3, #ff3c82);
+    transform: scale(1.05);
+}
+
 
 #result {
-    font-size: 24px;
+    display: none; /* 👈 hide by default */
+    font-size: 22px;
     margin-top: 30px;
-    padding: 25px;
-    background: white;
-    display: inline-block;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    color: #333;
-    max-width: 750px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    color: #444;
+    max-width: 700px;
+    width: 100%;
     text-align: center;
+    line-height: 1.6;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* Responsive adjustments for smaller screens */

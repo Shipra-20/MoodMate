@@ -10,7 +10,10 @@
     <div class="quiz-container">
         <div id="quiz"></div>
         <div id="result"></div>
-        <button id="retry" style="display: none;">Retry</button>
+
+        <div class="button-wrapper">
+            <button id="retry" onclick="restartQuiz()">Retry</button>
+        </div>    
     </div>
 
     <script>
@@ -133,34 +136,37 @@
         function displayResult() {
             quizContainer.style.display = 'none';
             retryButton.style.display = 'inline-block';
+            resultContainer.style.display = 'block';
 
-            let moodAnalysis = <h3>Your Mood Analysis:</h3>;
-            moodAnalysis += <p>Happy: ${moodResponses.happy}</p>;
-            moodAnalysis += <p>Sad: ${moodResponses.sad}</p>;
-            moodAnalysis += <p>Overwhelmed: ${moodResponses.overwhelmed}</p>;
+            let moodAnalysis = `
+            <h3>Your Mood Analysis:</h3>
+            <p>Happy: ${moodResponses.happy}</p>
+            <p>Sad: ${moodResponses.sad}</p>
+            <p>Overwhelmed: ${moodResponses.overwhelmed}</p>
+        `;
 
-            let tips = <h3>Well-being Tips:</h3>;
+            let tips = `<h3>Well-being Tips:</h3>`;
             let hasTips = false;
 
             if (moodResponses.happy > moodResponses.sad && moodResponses.happy > moodResponses.overwhelmed) {
-                tips += <p>You're feeling positive! Keep up the good habits.</p>;
+                tips += `<p>You're feeling positive! Keep up the good habits.</p>`;
                 hasTips = true;
             }
             if (moodResponses.sad >= moodResponses.happy && moodResponses.sad >= moodResponses.overwhelmed) {
-                tips += <p>You're feeling a bit low. Try journaling, reaching out to a friend.</p>;
+                tips += `<p>You're feeling a bit low. Try journaling, reaching out to a friend.</p>`;
                 hasTips = true;
             }
             if (moodResponses.overwhelmed >= moodResponses.happy && moodResponses.overwhelmed >= moodResponses.sad) {
-                tips += <p>You're feeling overwhelmed. Consider deep breathing exercises.</p>;
+                tips += `<p>You're feeling overwhelmed. Consider deep breathing exercises.</p>`;
                 hasTips = true;
             }
 
             if (!hasTips) {
-                tips += <p>Maintain a balanced routine and engage in activities that bring you joy.</p>;
+                tips += `<p>Maintain a balanced routine and engage in activities that bring you joy.</p>`;
             }
 
             resultContainer.innerHTML = moodAnalysis + tips;
-        }
+                    }
 
         function retryQuiz() {
             currentQuestion = 0;
